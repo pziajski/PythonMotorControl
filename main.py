@@ -1,4 +1,3 @@
-from tkinter import *
 import LabJackPython
 import ue9
 from PyQt4 import QtCore, QtGui
