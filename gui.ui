@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>795</width>
+    <height>484</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Motor Control</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="emergGB">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>40</y>
+      <width>341</width>
+      <height>301</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Emergency Control</string>
+    </property>
+    <widget class="QPushButton" name="eStopBN">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>90</y>
+       <width>251</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Emergency Stop</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="sResetBN">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>180</y>
+       <width>251</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>System Reset</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="motorGB">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>40</y>
+      <width>341</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Motor Control</string>
+    </property>
+    <widget class="QScrollBar" name="speedBar">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>120</y>
+       <width>241</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>70</y>
+       <width>291</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Motor Speed: 0%</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="sMotorBN">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>280</y>
+       <width>251</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Start Motor</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cwBN">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>180</y>
+       <width>121</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CW</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ccwBN">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>180</y>
+       <width>121</width>
+       <height>91</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CCW</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

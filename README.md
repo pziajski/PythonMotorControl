@@ -9,3 +9,5 @@ will be made for simple user interaction.
 # Requirements
 * Python 3.7.2
 * Any python IDE (in my case I will be using Anaconda Spyder as it is the requirement)
+* LabJackPython 2.0.0
+* PyQt4
