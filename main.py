@@ -12,39 +12,21 @@ class Window(QtGui.QMainWindow):
 		QtGui.QMainWindow.__init__(self)
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
-		self.ui.sMotorBN.clicked.connect(self.startMotor)
-		self.ui.sResetBN.setEnabled(False)
-		self.ui.eStopBN.setEnabled(False)
-		self.ui.eStopBN.clicked.connect(self.toggleState)
-		self.ui.sResetBN.clicked.connect(self.toggleState)
-		# self.ui.sMotorBN.clicked.connect()
+		# buttons
+		self.ui.updateBN.clicked.connect(self.updateValues)
+		# self.ui.eStopBN.clicked.connect()
+		# scroll bar
 		self.ui.speedBar.setMinimum(0)
 		self.ui.speedBar.setMaximum(100)
 		self.ui.speedBar.sliderMoved.connect(self.updateSpeedLB)
 		self.ui.speedBar.sliderReleased.connect(self.updateSpeedLB)
+		# rotation
 		self.ui.cwBN.setEnabled(False)
-		self.ui.ccwBN.setEnabled(False)
 		self.ui.cwBN.clicked.connect(self.changeRotation)
 		self.ui.ccwBN.clicked.connect(self.changeRotation)
 	
-	def startMotor(self):
-		self.ui.eStopBN.setEnabled(True)
-		self.ui.sMotorBN.setEnabled(False)
-		self.ui.cwBN.setEnabled(False)
-		self.ui.ccwBN.setEnabled(True)
-		self.ui.speedBar.setValue(20)
+	def updateValues(self):
 		self.updateSpeedLB()
-
-	def toggleState(self):
-		# toggles button states
-		if self.ui.eStopBN.isEnabled():
-			self.ui.sResetBN.setEnabled(True)
-			self.ui.eStopBN.setEnabled(False)
-			self.ui.speedBar.setValue(0)
-			self.updateSpeedLB()
-		else:
-			self.ui.sResetBN.setEnabled(False)
-			self.ui.sMotorBN.setEnabled(True)
 
 	def updateSpeedLB(self):
 		# updates value to label beside bar on release
