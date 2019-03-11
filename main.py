@@ -6,7 +6,7 @@ import ue9
 class PythonMotorControl:
     # variables
     motorDirection = True # states refer to Clockwise(True) and Counter Clockwise(False)
-    dutyCycle = 0
+    dutyCycle = 0 # duty cycle is stored so that motor information can be displayed on the GUI
     timeValue = 0
 
     def __init__(self, master):
@@ -42,14 +42,10 @@ class PythonMotorControl:
         self.speedSlider.grid()
         self.speedSlider.place(x = 50, y = 46)
     
-    # functions
-    def calcTimeValue(self, duty, time):
-        time = ((duty * 65536) / 100) - 65536
+    def updateDutyCyleLB(self, var): # var is the value of the slider that is given when the slider is moved
+        self.dutyCyclePercentLB['text'] = str(var) + " %"
 
-    def updateDutyCyleLB(self):
-        self.dutyCyclePercentLB['text'] = str(self.speedSlider.get()) + " %"
-        self.dutyCycle = self.speedSlider.get()
-
+    # toggles the directional buttons's state so that each button cannot be pressed more than once
     def toggleDirectionButtons(self):
         if self.motorDirection:
             self.cwButton['state'] = NORMAL
@@ -60,15 +56,15 @@ class PythonMotorControl:
             self.cwButton['state'] = DISABLED
             self.motorDirection = True
 
+    # prompts the user if the onboard stop is pressed
     def manualResetPressed(self):
         tkinter.messagebox.showinfo("Attention", "Manual reset has been attempted")
-  
+
 if __name__ == "__main__":  
     form = Tk()
     PythonMotorControl(form)
     form.mainloop()
 
-    # UI elements
     """
     # LabJack initialation
     myUE9 = ue9.UE9(ethernet = True, ipAddress = "10.32.89.110")
