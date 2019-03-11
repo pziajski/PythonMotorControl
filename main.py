@@ -10,17 +10,19 @@ class PythonMotorControl:
     timeValue = 0
 
     def __init__(self, master):
-        form = Frame(master)
-        form.pack()
+        self.master = form
+        form.title('Motor Control System')
+        form.geometry("511x231")
+        form.resizable(0,0)
         
         self.dutyCycleLB = Label(form, text = "Desired Duty Cycle:")
         self.dutyCyclePercentLB = Label(form, text = "0 %")
         self.directionLB = Label(form, text = "Motor Direction:")
         self.updateButton = Button(form, text = "Update Settings", height = 3, width = 35)
         self.stopButton = Button(form, text = "Emergency Stop", height = 3, width = 35)
-        self.cwButton = Button(form, text = "Clockwise", height = 3, width = 20, state = DISABLED, command = self.toggleDirectionButtons(self.motorDirection))
-        self.ccwButton = Button(form, text = "Counter Clockwise", height = 3, width = 20, command = self.toggleDirectionButtons(self.motorDirection))
-        self.speedSlider = Scale(form, from_ = 0, to = 100, orient = HORIZONTAL, showvalue = 0, length = 200, command = self.updateDutyCyleLB(self.dutyCycle))
+        self.cwButton = Button(form, text = "Clockwise", height = 3, width = 20, state = DISABLED, command = self.toggleDirectionButtons)
+        self.ccwButton = Button(form, text = "Counter Clockwise", height = 3, width = 20, command = self.toggleDirectionButtons)
+        self.speedSlider = Scale(form, from_ = 0, to = 100, orient = HORIZONTAL, showvalue = 0, length = 200, command = self.updateDutyCyleLB)
 
         # UI layout
         self.dutyCycleLB.grid()
@@ -44,32 +46,26 @@ class PythonMotorControl:
     def calcTimeValue(self, duty, time):
         time = ((duty * 65536) / 100) - 65536
 
-    def updateDutyCyleLB(self, duty):
+    def updateDutyCyleLB(self):
         self.dutyCyclePercentLB['text'] = str(self.speedSlider.get()) + " %"
-        duty = self.speedSlider.get()
+        self.dutyCycle = self.speedSlider.get()
 
-    def toggleDirectionButtons(self, var):
-        if var:
+    def toggleDirectionButtons(self):
+        if self.motorDirection:
             self.cwButton['state'] = NORMAL
             self.ccwButton['state'] = DISABLED
-            var = False
+            self.motorDirection = False
         else:
             self.ccwButton['state'] = NORMAL
             self.cwButton['state'] = DISABLED
-            var = True
+            self.motorDirection = True
 
     def manualResetPressed(self):
         tkinter.messagebox.showinfo("Attention", "Manual reset has been attempted")
-
-    
+  
 if __name__ == "__main__":  
-    # form creation and details
     form = Tk()
-    form.title('Motor Control System')
-    form.geometry("511x231")
-    form.resizable(0,0)
-
-    gui = PythonMotorControl(form)
+    PythonMotorControl(form)
     form.mainloop()
 
     # UI elements
